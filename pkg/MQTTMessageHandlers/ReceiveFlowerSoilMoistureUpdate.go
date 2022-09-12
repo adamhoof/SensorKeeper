@@ -9,12 +9,12 @@ import (
 	mqtt "github.com/eclipse/paho.mqtt.golang"
 )
 
-func ReceiveFlowerWaterLevelUpdate(dbHandler database.DatabaseHandler, botHandler *telegram.BotHandler) mqtt.MessageHandler {
+func ReceivePlantSoilMoistureUpdate(dbHandler database.DatabaseHandler, botHandler *telegram.BotHandler) mqtt.MessageHandler {
 	return func(mqttClient mqtt.Client, message mqtt.Message) {
-		update := mqtt_update.SoilMoisture{}
+		update := mqtt_update.SoilMoistureUpdate{}
 		err := json.Unmarshal(message.Payload(), &update)
 		if err != nil {
-			fmt.Println("Failed to unpack error into WaterLevelUpdate struct", err)
+			fmt.Println("Failed to unpack error into WaterLevelUpdate struct: ", err)
 		}
 
 		dbHandler.InsertSoilMoistureUpdate(&update)
@@ -22,6 +22,6 @@ func ReceiveFlowerWaterLevelUpdate(dbHandler database.DatabaseHandler, botHandle
 		if !update.IsCriticalValue {
 			return
 		}
-		botHandler.SendText(fmt.Sprintf("Soil moisture critical:\n%s: %s", update.ClientName, update.SensorValue))
+		botHandler.SendText(fmt.Sprintf("Soil moisture critical for plant:\n%s: %d", update.PlantName, update.Value))
 	}
 }

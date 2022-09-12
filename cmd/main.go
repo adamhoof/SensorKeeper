@@ -47,7 +47,7 @@ func main() {
 	botHandler := telegram.BotHandler{Owner: boi}
 	botHandler.SetToken(conf.TelegramBotToken)
 
-	mqttClient.Subscribe(conf.MQTTWaterLevelUpdateTopic, 0, mqtt_handlers.ReceiveFlowerWaterLevelUpdate(&postgresDBHandler, &botHandler))
+	mqttClient.Subscribe(conf.MQTTPlantSoilMoistureTopic, 0, mqtt_handlers.ReceivePlantSoilMoistureUpdate(&postgresDBHandler, &botHandler))
 
 	go botHandler.StartBot()
 	fmt.Println("Telegram bot running...")
