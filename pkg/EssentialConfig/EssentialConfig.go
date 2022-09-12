@@ -17,6 +17,8 @@ type Config struct {
 	MQTTServerUsername     string `json:"MQTTServerUsername"`
 	MQTTServerPassword     string `json:"MQTTServerPassword"`
 	MQTTSensorPublishTopic string `json:"MQTTSensorPublishTopic"`
+	TelegramBotToken       string `json:"TelegramBotToken"`
+	TelegramBotOwner       string `json:"TelegramBotOwner"`
 }
 
 func LoadConfigFromJsonFile(pathToJsonFile string, unpackInto *Config) {
