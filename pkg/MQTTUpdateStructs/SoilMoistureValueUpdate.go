@@ -1,6 +1,6 @@
 package mqtt_update
 
-type WaterLevel struct {
+type SoilMoisture struct {
 	ClientName           string `json:"ClientName"`
 	ClientSubscribeTopic string `json:"ClientSubscribeTopic"`
 	SensorValue          string `json:"SensorValue"`

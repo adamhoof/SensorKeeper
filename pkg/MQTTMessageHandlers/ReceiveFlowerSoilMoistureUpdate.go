@@ -11,17 +11,17 @@ import (
 
 func ReceiveFlowerWaterLevelUpdate(dbHandler database.DatabaseHandler, botHandler *telegram.BotHandler) mqtt.MessageHandler {
 	return func(mqttClient mqtt.Client, message mqtt.Message) {
-		update := mqtt_update.WaterLevel{}
+		update := mqtt_update.SoilMoisture{}
 		err := json.Unmarshal(message.Payload(), &update)
 		if err != nil {
 			fmt.Println("Failed to unpack error into WaterLevelUpdate struct", err)
 		}
 
-		dbHandler.InsertWaterLevelUpdate(&update)
+		dbHandler.InsertSoilMoistureUpdate(&update)
 
 		if !update.IsCriticalValue {
 			return
 		}
-		botHandler.SendText(fmt.Sprintf("Water level critical:\n%s: %s", update.ClientName, update.SensorValue))
+		botHandler.SendText(fmt.Sprintf("Soil moisture critical:\n%s: %s", update.ClientName, update.SensorValue))
 	}
 }

@@ -20,7 +20,7 @@ func (handler *PostgresDBHandler) Connect(config *string) (err error) {
 	return handler.db.Ping()
 }
 
-func (handler *PostgresDBHandler) InsertWaterLevelUpdate(update *mqtt_update.WaterLevel) {
+func (handler *PostgresDBHandler) InsertSoilMoistureUpdate(update *mqtt_update.SoilMoisture) {
 	_, err := handler.db.Exec("INSERT INTO water_level_sensor_values (sensor_name, value, is_critical, time_stamp) VALUES($1, $2, $3, $4);", update.ClientName, update.SensorValue, update.IsCriticalValue, time.Now())
 	if err != nil {
 		fmt.Println("Failed to insert water level update into db", err)
