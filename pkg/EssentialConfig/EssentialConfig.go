@@ -6,19 +6,19 @@ import (
 )
 
 type Config struct {
-	DbTableName            string `json:"DbTableName"`
-	DbHost                 string `json:"DbHost"`
-	DbName                 string `json:"DbName"`
-	DbPort                 string `json:"DbPort"`
-	DbUser                 string `json:"DbUser"`
-	DbUserPassword         string `json:"DbUserPassword"`
-	MQTTClientName         string `json:"MQTTClientName"`
-	MQTTServer             string `json:"MQTTServer"`
-	MQTTServerUsername     string `json:"MQTTServerUsername"`
-	MQTTServerPassword     string `json:"MQTTServerPassword"`
-	MQTTSensorPublishTopic string `json:"MQTTSensorPublishTopic"`
-	TelegramBotToken       string `json:"TelegramBotToken"`
-	TelegramBotOwner       string `json:"TelegramBotOwner"`
+	DbTableName               string `json:"DbTableName"`
+	DbHost                    string `json:"DbHost"`
+	DbName                    string `json:"DbName"`
+	DbPort                    string `json:"DbPort"`
+	DbUser                    string `json:"DbUser"`
+	DbUserPassword            string `json:"DbUserPassword"`
+	MQTTClientName            string `json:"MQTTClientName"`
+	MQTTServer                string `json:"MQTTServer"`
+	MQTTServerUsername        string `json:"MQTTServerUsername"`
+	MQTTServerPassword        string `json:"MQTTServerPassword"`
+	MQTTWaterLevelUpdateTopic string `json:"MQTTWaterLevelUpdateTopic"`
+	TelegramBotToken          string `json:"TelegramBotToken"`
+	TelegramBotOwner          string `json:"TelegramBotOwner"`
 }
 
 func LoadConfigFromJsonFile(pathToJsonFile string, unpackInto *Config) {

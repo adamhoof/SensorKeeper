@@ -45,7 +45,7 @@ func main() {
 	botHandler := telegram.BotHandler{Owner: boi}   //assign that user/group to the bot so that no one else talks to him
 	botHandler.SetToken(conf.TelegramBotToken)
 
-	mqttClient.Subscribe(conf.MQTTSensorPublishTopic, 0, mqtt_handlers.ReceiveFlowerWaterLevelUpdate(&postgresDBHandler, &botHandler))
+	mqttClient.Subscribe(conf.MQTTWaterLevelUpdateTopic, 0, mqtt_handlers.ReceiveFlowerWaterLevelUpdate(&postgresDBHandler, &botHandler))
 
 	botHandler.StartBot()
 }
